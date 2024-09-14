@@ -1,1 +1,28 @@
-# Your Solution
+version: '3.8'
+ 
+services:
+  # Book Catalog Service
+  book_catalog:
+    image: book_catalog
+    build:
+      context: ./book_catalog
+      dockerfile: Dockerfile
+    container_name: book_catalog
+    ports:
+      - "4000:4000"
+    environment:
+      - PORT=4000
+      - DATABASE_URL=postgresql://sit_722_part3_user:Ixv5aMpsXpUEmjfKjfHP2O2P3kjEb4T1@dpg-crhbe2o8fa8c738v9ksg-a.oregon-postgres.render.com/sit_722_part3
+ 
+  # Inventory Management Service
+  inventory_management:
+    image: inventory_management
+    build:
+      context: ./inventory_management
+      dockerfile: Dockerfile
+    container_name: inventory_management
+    ports:
+      - "5000:5000"
+    environment:
+      - PORT=5000
+      - DATABASE_URL=postgresql://sit_722_part3_user:Ixv5aMpsXpUEmjfKjfHP2O2P3kjEb4T1@dpg-crhbe2o8fa8c738v9ksg-a.oregon-postgres.render.com/sit_722_part3
